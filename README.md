@@ -16,8 +16,8 @@
         - confReader.hpp：設定ファイル読み込み用コード
 ## 3. 設定ファイル(.conf)
 - oFプロジェクトのbin/dataディレクトリにsetting.confを入れる （基本的な設定項目はこのファイルで編集可能）
-## 4. MYSQL C++用ライブラリ
-- MYSQLのC++ Connectorを使用
+## 4. MySQL C++用ライブラリ
+- MySQLのC++ Connectorを使用
 - Windowsの場合，下記を参照
     - https://qiita.com/shiro160/private/9ec4cb66fc1b5fb42892
     - https://docs.microsoft.com/ja-jp/azure/mysql/connect-cpp
