@@ -1,0 +1,14 @@
+obj/
+addons.make
+icon.rc
+*.vcxproj
+*.filters
+*.user
+*.lib
+*.dll
+*.exe
+*.exp
+bin/**/*.dll
+bin/**/*.lib
+bin/**/*.exe
+bin/**/*.exp
