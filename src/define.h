@@ -22,7 +22,6 @@ enum class PROCESS_RESULT {
 
 enum class DATA_SET {
 	JB_ID, //JOB_ID
-	QR_ID, //QR_CODE_ID
 	PC_ID, //PC_ID
 	TP_ID, //TYPE_ID
 	LUNCH, //LAUNCHED
