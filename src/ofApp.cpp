@@ -99,8 +99,8 @@ void ofApp::update() {
             printf("Update table error\n");
             exit();
         }
-
-        //insertData();
+        
+        timeThen = clock();
     }
 }
 
