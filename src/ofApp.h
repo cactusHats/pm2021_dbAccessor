@@ -10,7 +10,7 @@ public:
 	void setup();
 	void update();
 	void draw();
-	void ofApp::keyPressed(int key);
+	void keyPressed(int key);
 
 	int readSettingFile();
 	int connectToMySQL();
