@@ -25,6 +25,7 @@ enum class DATA_SET {
 	PC_ID, //PC_ID
 	TP_ID, //TYPE_ID
 	LUNCH, //LAUNCHED
+	HUE, //HUE
 	UPDAT, //UPDATED_AT
 	NUM,
 };

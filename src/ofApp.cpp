@@ -268,15 +268,16 @@ int ofApp::readTable(vector<vector<string>>& tableData_) {
 		tmp.push_back(result->getString(int(DATA_SET::PC_ID) + 1)); //PC_ID
 		tmp.push_back(result->getString(int(DATA_SET::TP_ID) + 1)); //TYPE_ID
 		tmp.push_back(result->getString(int(DATA_SET::LUNCH) + 1)); //LAUNCHED
+		tmp.push_back(result->getString(int(DATA_SET::HUE) + 1)); //HUE
 		tmp.push_back(result->getString(int(DATA_SET::UPDAT) + 1)); //UPDATED_AT
 		tableData_.push_back(tmp);
-
 		/*
-		printf("Reading from table = (JB=%s, PC=%s, TYPE=%s, LUNCH=%s, UPDATE_AT=%s)\n",
+		printf("Reading from table = (JB=%s, PC=%s, TYPE=%s, LUNCH=%s, HUE=%s, UPDATE_AT=%s)\n",
 			tmp[int(DATA_SET::JB_ID)].c_str(),
 			tmp[int(DATA_SET::PC_ID)].c_str(),
 			tmp[int(DATA_SET::TP_ID)].c_str(),
 			tmp[int(DATA_SET::LUNCH)].c_str(),
+			tmp[int(DATA_SET::HUE)].c_str(),
 			tmp[int(DATA_SET::UPDAT)].c_str());
 		*/
 	};
@@ -298,16 +299,18 @@ int ofApp::sendOscPacket(vector<vector<string>> sendData, bool testMode) {
 			//m.addIntArg(stoi(sendData[i].at(int(DATA_SET::PC_ID)))); //PC_ID
 			m.addIntArg(stoi(sendData[i].at(int(DATA_SET::TP_ID)))); //TYPE_ID
 			//m.addIntArg(stoi(sendData[i].at(int(DATA_SET::LUNCH)))); //LAUNCHED
+			m.addIntArg(stoi(sendData[i].at(int(DATA_SET::HUE)))); //HUE
 			//UPDATED_ATは送信しない
 
 			snd.sendMessage(m);
-			printf("%s %s send data = ID=%s, PC=%s, TYPE=%s, LAUNCHED=%s, UPDATED_AT=%s\n",
+			printf("%s %s send data = ID=%s, PC=%s, TYPE=%s, LAUNCHED=%s, HUE=%s, UPDATED_AT=%s\n",
 				getCurrentDate().c_str(),
 				getCurrentTime().c_str(),
 				sendData[i].at(int(DATA_SET::JB_ID)).c_str(),
 				sendData[i].at(int(DATA_SET::PC_ID)).c_str(),
 				sendData[i].at(int(DATA_SET::TP_ID)).c_str(),
 				sendData[i].at(int(DATA_SET::LUNCH)).c_str(),
+				sendData[i].at(int(DATA_SET::HUE)).c_str(),
 				sendData[i].at(int(DATA_SET::UPDAT)).c_str());
 		}
 	}
@@ -368,7 +371,7 @@ string ofApp::getCurrentTime() {
 int ofApp::createTable() {
 
 	//-- Create query --
-	string query = "CREATE TABLE fireWorksTable (JOB_ID INT(11) not null AUTO_INCREMENT PRIMARY KEY, PC_ID INT(11) not null, TYPE_ID INT(11) not null, LAUNCHED BOOLEAN not null, UPDATED_AT TIMESTAMP not null) engine = innodb default charset = utf8";
+	string query = "CREATE TABLE fireWorksTable (JOB_ID INT not null AUTO_INCREMENT PRIMARY KEY, PC_ID TINYINT not null, TYPE_ID TINYINT not null, LAUNCHED BOOLEAN not null, HUE SMALLINT not null, UPDATED_AT TIMESTAMP not null) engine = innodb default charset = utf8";
 	//cout << "QUERY= " << query << endl;
 
 	//-- Execute query --
@@ -391,7 +394,7 @@ int ofApp::insertData() {
 	int type = ofRandom(0, 6);
 
 	//-- Create query --
-	string query = "insert INTO fireworkstable (PC_ID, TYPE_ID, LAUNCHED) VALUES (0," + to_string(type) + ",0);";
+	string query = "insert INTO fireworkstable (PC_ID, TYPE_ID, LAUNCHED, HUE) VALUES (1," + to_string(type) + ",0,0);";
 	//cout << "QUERY= " << query << endl;
 
 	//-- Execute query --
